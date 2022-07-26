@@ -1,4 +1,7 @@
 <?php
+use Alfred\Workflows\Workflow;
+
+require 'vendor/autoload.php';
 
 //header ("Content-Type:text/xml");
 //syslog(LOG_ERR, "message to send to log");
@@ -30,9 +33,7 @@ function replace_unicode_escape_sequence($match) {
 	return '\u' . (String) bin2hex(iconv('UTF-8', 'UCS-2', $match[0]));
 }
 
-require_once('workflows.php');
-
-$w = new Workflows();
+$w = new Workflow;
 if (!isset($query)) {
 	$query = join(' ', array_slice($argv, 1));
 }
@@ -109,14 +110,22 @@ if ($urlsafe_base64_encode != $query) $encodes["base64(urlsafe) Encoded"] = $url
 
 $encodes = prepare_output($encodes);
 
+$result_count = 0;
 foreach($encodes as $key => $value) {
-	$w->result( $key, $value, $value, $key, 'icon.png', 'yes' );
+	$result_count += 1;
+	$w->result()
+			->uid($key)
+			->arg($value)
+			->title($value)
+			->subtitle($key)
+			->icon('icon.png')
+			->valid(true);
 }
 
-if ( count( $w->results() ) == 0 ) {
+if ( $result_count == 0 ) {
 	$w->result( 'encode', $query, 'Nothing useful resulted', 'The encoded strings were the same as your query', 'icon.png', 'yes' );
 }
 
-echo $w->toxml();
+echo $w->output();
 // ****************
 ?>

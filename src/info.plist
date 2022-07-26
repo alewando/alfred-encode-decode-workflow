@@ -54,7 +54,7 @@
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
-	<string>Encode / Decode (v1.8)</string>
+	<string>Encode / Decode (v1.11)</string>
 	<key>objects</key>
 	<array>
 		<dict>
@@ -94,7 +94,7 @@
 				<key>runningsubtext</key>
 				<string>Encoding "{query}"</string>
 				<key>script</key>
-				<string>php encode.php "$(./normalise -form NFC "{query}")"</string>
+				<string>/usr/local/bin/php encode.php "$(./normalise -form NFC "{query}")"</string>
 				<key>subtext</key>
 				<string>Encode "{query}"</string>
 				<key>title</key>
@@ -138,7 +138,7 @@
 				<key>runningsubtext</key>
 				<string>Decoding "{query}"</string>
 				<key>script</key>
-				<string>php decode.php "$(./normalise -form NFC "{query}")"</string>
+				<string>/usr/local/bin/php decode.php "$(./normalise -form NFC "{query}")"</string>
 				<key>subtext</key>
 				<string>Decode "{query}"</string>
 				<key>title</key>

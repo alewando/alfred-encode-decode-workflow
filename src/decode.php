@@ -1,4 +1,7 @@
 <?php
+use Alfred\Workflows\Workflow;
+
+require 'vendor/autoload.php';
 
 //header ("Content-Type:text/xml");
 //syslog(LOG_ERR, "message to send to log");
@@ -6,9 +9,7 @@
 //$query = "%5D & > \u0058"; // URL,
 // ****************
 
-require_once('workflows.php');
-
-$w = new Workflows();
+$w = new Workflow;
 if (!isset($query)) {
 	$query = $argv[1];
 }
@@ -86,14 +87,29 @@ if ($urlsafe_base64_decode && $urlsafe_base64_decode != $query) { $decodes["base
 
 $decodes = prepare_output($decodes);
 
+$result_count = 0;
 foreach($decodes as $key => $value) {
-	$w->result( $key, $value, $value, $key, 'icon.png', 'yes' );
+	$result_count += 1;
+	$w->result()
+			->uid($key)
+			->arg($value)
+			->title($value)
+			->subtitle($key)
+			->icon('icon.png')
+			->valid(true);
 }
 
-if ( count( $w->results() ) == 0 ) {
-	$w->result( 'decode', $query, 'Nothing useful resulted', 'The decoded strings were the same as your query', 'icon.png', 'yes' );
+if ( $result_count == 0 ) {
+	$w->result()
+			->uid('decode')
+			->arg($query)
+			->title('Nothing useful resulted')
+			->subtitle('The decoded strings were the same as your query')
+			->icon('icon.png')
+			->valid(true);
+
 }
 
-echo $w->toxml();
+echo $w->output();
 // ****************
 ?>

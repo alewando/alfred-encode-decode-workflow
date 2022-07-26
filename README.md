@@ -1,15 +1,15 @@
-Encode / Decode ([Download v1.10](https://raw.github.com/willfarrell/alfred-encode-decode-workflow/master/encode-decode.alfredworkflow))
+Encode / Decode ([Download Latest](https://raw.github.com/willfarrell/alfred-encode-decode-workflow/master/encode-decode.alfredworkflow))
 =====================
 
 Encoding and decoding a string into multiple variations.
 
 ## Requirements
-1. [Alfred App v2](http://www.alfredapp.com/#download)
-1. [Alfred Powerpack](https://buy.alfredapp.com/)
+1. [Alfred App](http://www.alfredapp.com/#download)
+2. [Alfred Powerpack](https://buy.alfredapp.com/)
 
 ## Installing
 1. Click the download buttons below
-2. Double-click to import into Alfred 2
+2. Double-click to import into Alfred
 3. Review the workflow to add custom Hotkeys
 
 ### macOS Monterey (12.0) compatibility
